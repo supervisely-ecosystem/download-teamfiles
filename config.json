@@ -1,0 +1,13 @@
+{
+  "name": "Download to Team files",
+  "type": "app",
+  "version": "2.0.0",
+  "categories": ["dev"],
+  "description": "Download to Team files.",
+  "docker_image": "supervisely/base-py-sdk:latest",
+  "task_location": "workspace_tasks",
+  "icon": "",
+  "icon_cover": true,
+  "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
+  "port": 8000
+}
