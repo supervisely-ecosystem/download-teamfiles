@@ -3,6 +3,8 @@
   "type": "app",
   "version": "2.0.0",
   "categories": ["dev"],
+  "release": { "version": "v1.0.0", "name": "init" },
+  "slug": "grokhi/download-teamfiles",
   "description": "Download to Team files.",
   "docker_image": "supervisely/base-py-sdk:latest",
   "task_location": "workspace_tasks",
