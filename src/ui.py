@@ -1,6 +1,5 @@
 import src.globals as g
-import src.utils as u
-
+]
 import shutil
 import supervisely as sly
 from urllib.parse import urlparse, unquote
