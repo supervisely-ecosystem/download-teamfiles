@@ -3,7 +3,7 @@ import src.utils as u
 
 import shutil
 import supervisely as sly
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 import requests
 from tqdm import tqdm
 import json
@@ -54,8 +54,6 @@ progress_bar.hide()
 @button_download.click
 def download():
 
-    # editor.get_json_state()
-
     data_dict = json.loads(editor.get_text())
 
     # url = "http://example.com/file.txt"  # Replace with the URL of the file you want to download
@@ -68,6 +66,7 @@ def download():
 
             parsed_url = urlparse(url)
             file_name = os.path.basename(parsed_url.path)
+            file_name = unquote(file_name) 
             destination_path = os.path.join(tf_destination_directory, name, file_name)
 
             os.makedirs(os.path.dirname(destination_path), exist_ok=True)
@@ -77,7 +76,6 @@ def download():
             total_size = int(response.headers.get('content-length', 0))
             block_size = 1024
 
-            
             with tqdm(message=f"Downloading {name} to buffer", total=total_size, unit='B', unit_scale=True) as pbar:
                 with open(destination_path, 'wb') as file:
                     for data in response.iter_content(block_size):
