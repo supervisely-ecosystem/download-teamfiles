@@ -26,10 +26,6 @@ from supervisely.app.widgets import (
 progress_bar = Progress(show_percents=False)
 
 
-checkbox = Checkbox(
-    content="Unpack if archive",
-    checked=True,
-)
 
 input_tf_dest_dir = Input(placeholder='Please input here result directory in team files')
 editor = Editor(initial_text='{"url_name":"https://url.com/archive.zip"}')
@@ -44,7 +40,6 @@ card_1 = Card(
     content=Container(
         widgets=[
             input_tf_dest_dir,
-            checkbox,
             editor,
             button_download,
             progress_bar
@@ -89,15 +84,9 @@ def download():
                         file.write(data)
                         pbar.update(len(data))
                         
-            if checkbox.is_checked():
-                unpacked_dir = u.unpack_if_archive(destination_path)
-                tf_dst_path = os.path.join(input_tf_dest_dir.get_value(), name)
-                with tqdm(message=f"Uploading {name} to Team files", total=total_size, unit='B', unit_scale=True) as pbar:
-                    g.api.file.upload_directory(g.TEAM_ID, unpacked_dir, tf_dst_path, progress_size_cb=pbar)
-            else:
-                tf_dst_path = os.path.join(input_tf_dest_dir.get_value(), file_name)
-                with tqdm(message=f"Uploading {name} to Team files", total=total_size, unit='B', unit_scale=True) as pbar:
-                    g.api.file.upload(g.TEAM_ID,destination_path, tf_dst_path, progress_cb=pbar)
+            tf_dst_path = os.path.join(input_tf_dest_dir.get_value(), file_name)
+            with tqdm(message=f"Uploading {name} to Team files", total=total_size, unit='B', unit_scale=True) as pbar:
+                g.api.file.upload(g.TEAM_ID,destination_path, tf_dst_path, progress_cb=pbar)
 
             shutil.rmtree(path=os.path.dirname(destination_path))
 
