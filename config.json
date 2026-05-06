@@ -1,6 +1,7 @@
 {
   "name": "Download to Team files",
   "type": "app",
+  "instance_version": "6.15.60",
   "version": "2.0.0",
   "categories": ["dev"],
   "release": { "version": "v1.0.1", "name": "init" },
