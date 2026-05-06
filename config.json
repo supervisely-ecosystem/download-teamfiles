@@ -6,7 +6,7 @@
   "release": { "version": "v1.0.1", "name": "init" },
   "slug": "grokhi/download-teamfiles",
   "description": "Download to Team files.",
-  "docker_image": "supervisely/base-py-sdk:latest",
+  "docker_image": "supervisely/base-py-sdk:6.73.564",
   "task_location": "workspace_tasks",
   "icon": "",
   "icon_cover": true,
